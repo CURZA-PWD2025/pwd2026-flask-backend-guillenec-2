@@ -3,11 +3,16 @@ from app.models.user import User
 from app.models.rol import Rol
 from flask import jsonify, Response
 from sqlalchemy.exc import IntegrityError
-from flask_jwt_extended import create_access_token, create_refresh_token
+from flask_jwt_extended import (
+    create_access_token,
+    create_refresh_token,
+    get_jwt_identity,
+)
+
 
 class AuthController:
     @staticmethod
-    def Register(request: dict) -> tuple[Response, int]:
+    def register(request: dict) -> tuple[Response, int]:
         nombre = request.get("nombre")
         email = request.get("email")
         password = request.get("password")
@@ -22,10 +27,10 @@ class AuthController:
         if error is None:
             try:
                 rol_user = db.session.execute(
-                    db.select(Rol).filter_by(nombre="user")
+                    db.select(Rol).filter_by(nombre="operador")
                 ).scalar_one_or_none()
                 if not rol_user:
-                    return jsonify({"message": "No existe el rol base 'user'"}), 422
+                    return jsonify({"message": "No existe el rol base 'operador'"}), 422
 
                 user = User(
                     nombre=nombre, email=email, rol_id=rol_user.id, password=password
@@ -41,7 +46,7 @@ class AuthController:
         return jsonify({"message": error}), 422
 
     @staticmethod
-    def Login(request: dict) -> tuple[Response, int]:
+    def login(request: dict) -> tuple[Response, int]:
         email: str | None = request.get("email")
         password: str | None = request.get("password")
 
@@ -77,6 +82,10 @@ class AuthController:
         return jsonify({"message": error}), 422
 
     @staticmethod
-    def GetMe() -> tuple[Response, int]:
-        return jsonify({"message": "Endpoint para obtener información del usuario autenticado"}), 200
-    
+    def get_me() -> tuple[Response, int]:
+        user_id = get_jwt_identity()
+        user = db.session.get(User, int(user_id))
+
+        if user:
+            return jsonify(user.to_dict()), 200
+        return jsonify({"message": "usuario no encontrado"}), 404
