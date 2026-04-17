@@ -34,5 +34,5 @@ class User(BaseModel):
     def validate_password(self, password:str) -> bool:
       return check_password_hash(self.password, password)
     
-    def generate_password(self, password:str):
+    def generate_password_hash(self, password:str):
       self.password = generate_password_hash(password)
