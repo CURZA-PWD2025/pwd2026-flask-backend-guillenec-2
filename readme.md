@@ -1,6 +1,6 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/b0vxNtZy)
-
 # Trabajo Práctico N° 1 — Sistema de Gestión de Stock
+
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/b0vxNtZy)
 
 **Materia:** Programación Web Dinámica  
 **Modalidad:** Individual  
@@ -73,7 +73,7 @@ El sistema tiene cuatro modelos que heredan de su `BaseModel` (con `id`, `create
 
 ### Relaciones entre modelos
 
-```
+```bash
 Categoria ──< Producto >── Proveedor
                │
                └──< MovimientoStock >── User
@@ -145,7 +145,7 @@ El proyecto debe tener al menos **cuatro Blueprints** además de `auth`.
 
 ## Estructura de carpetas esperada
 
-```
+```bash
 app/
 ├── __init__.py              # create_app, registrar blueprints y JWT
 ├── config.py                # clase Config con variables de entorno
@@ -196,7 +196,7 @@ El `docker-compose.yml` debe definir **tres servicios**:
 
 ### Variables de entorno (`.env`)
 
-```
+```bash
 FLASK_APP=run.py
 FLASK_ENV=development
 FLASK_DEBUG=1
