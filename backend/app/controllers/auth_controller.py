@@ -75,3 +75,8 @@ class AuthController:
             return jsonify({"message": "Credenciales inválidas"}), 401
 
         return jsonify({"message": error}), 422
+
+    @staticmethod
+    def GetMe() -> tuple[Response, int]:
+        return jsonify({"message": "Endpoint para obtener información del usuario autenticado"}), 200
+    
