@@ -5,12 +5,8 @@ from app.controllers import Controller
 from app.models import db
 from app.models.producto import Producto
 
-from flask_jwt_extended import jwt_required
-from app.decorators.rol_access import rol_access
-
 class ProductoController(Controller):
     @staticmethod
-    @jwt_required()
     def get_all() -> tuple[Response, int]:
         productos_list = (
             db.session.execute(db.select(Producto).order_by(db.desc(Producto.id)))
@@ -23,7 +19,6 @@ class ProductoController(Controller):
         return jsonify({"message": "datos no encontrados"}), 404
 
     @staticmethod
-    @jwt_required()
     def show(id: int) -> tuple[Response, int]:
         producto = db.session.get(Producto, id)
         if producto:
@@ -32,7 +27,6 @@ class ProductoController(Controller):
         return jsonify({"message": "producto no encontrado"}), 404
     
     @staticmethod
-    @rol_access(['admin'])
     def create(data: dict) -> tuple[Response, int]:
         try:
             new_producto = Producto(
@@ -60,7 +54,6 @@ class ProductoController(Controller):
             return jsonify({"message": "error interno del servidor"}), 500
         
     @staticmethod
-    @rol_access(['admin'])
     def update(id: int, data: dict) -> tuple[Response, int]:
         try:
             producto = db.session.get(Producto, id)
@@ -91,7 +84,6 @@ class ProductoController(Controller):
         
 
     @staticmethod
-    @rol_access(['admin'])
     def delete(id: int) -> tuple[Response, int]:
         try:
             producto = db.session.get(Producto, id)

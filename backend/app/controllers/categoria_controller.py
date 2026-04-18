@@ -4,12 +4,10 @@ from sqlalchemy.exc import IntegrityError
 from app.controllers import Controller
 from app.models import db
 from app.models.categoria import Categoria
-from flask_jwt_extended import jwt_required
-from app.decorators.rol_access import rol_access
+
 
 class CategoriaController(Controller):
     @staticmethod
-    @jwt_required()
     def get_all() -> tuple[Response, int]:
         categorias_list = (
             db.session.execute(db.select(Categoria).order_by(db.desc(Categoria.id)))
@@ -22,7 +20,6 @@ class CategoriaController(Controller):
         return jsonify({"message": "datos no encontrados"}), 404
 
     @staticmethod
-    @jwt_required()
     def show(id: int) -> tuple[Response, int]:
         categoria = db.session.get(Categoria, id)
         if categoria:
@@ -31,8 +28,6 @@ class CategoriaController(Controller):
         return jsonify({"message": "categoria no encontrada"}), 404
 
     @staticmethod
-    @jwt_required()
-    @rol_access(['admin'])
     def create(request: dict) -> tuple[Response, int]:
         nombre = request.get("nombre")
         descripcion = request.get("descripcion")
@@ -53,8 +48,6 @@ class CategoriaController(Controller):
         return jsonify({"message": error}), 422
     
     @staticmethod
-    @jwt_required()
-    @rol_access(['admin'])
     def update(request: dict, id: int) -> tuple[Response, int]:
         nombre = request.get("nombre")
         descripcion = request.get("descripcion")
@@ -77,8 +70,6 @@ class CategoriaController(Controller):
             return jsonify({"message": "Nombre de categoria en uso"}), 409
     
     @staticmethod
-    @jwt_required()
-    @rol_access(['admin'])
     def delete(id: int) -> tuple[Response, int]:
         categoria = db.session.get(Categoria, id)
         if categoria:

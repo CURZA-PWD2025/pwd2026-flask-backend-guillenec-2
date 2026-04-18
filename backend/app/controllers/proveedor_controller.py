@@ -4,11 +4,9 @@ from sqlalchemy.exc import IntegrityError
 from app.controllers import Controller
 from app.models import db
 from app.models.proveedor import Proveedor
-from app.decorators.rol_access import rol_access
 
 class ProveedorController(Controller):
     @staticmethod
-    @rol_access(['admin'])
     def get_all() -> tuple[Response, int]:
         proveedores_list = (
             db.session.execute(db.select(Proveedor).order_by(db.desc(Proveedor.id)))
@@ -21,7 +19,6 @@ class ProveedorController(Controller):
         return jsonify({"message": "datos no encontrados"}), 404
 
     @staticmethod
-    @rol_access(['admin'])
     def show(id: int) -> tuple[Response, int]:
         proveedor = db.session.get(Proveedor, id)
         if proveedor:
@@ -30,7 +27,6 @@ class ProveedorController(Controller):
         return jsonify({"message": "proveedor no encontrado"}), 404
     
     @staticmethod
-    @rol_access(['admin'])
     def create(request: dict) -> tuple[Response, int]:
         nombre = request.get("nombre")
         contacto = request.get("contacto")
@@ -62,7 +58,6 @@ class ProveedorController(Controller):
         return jsonify({"message": error}), 422
     
     @staticmethod
-    @rol_access(['admin'])
     def update(request: dict, id: int) -> tuple[Response, int]:
         nombre = request.get("nombre")
         contacto = request.get("contacto")
@@ -95,7 +90,6 @@ class ProveedorController(Controller):
         return jsonify({"message": error}), 422
     
     @staticmethod
-    @rol_access(['admin'])
     def delete(id: int) -> tuple[Response, int]:
         proveedor = db.session.get(Proveedor, id)
         if proveedor:
