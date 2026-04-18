@@ -9,7 +9,6 @@ from flask_jwt_extended import (
     get_jwt_identity,
 )
 
-
 class AuthController:
     @staticmethod
     def register(request: dict) -> tuple[Response, int]:
