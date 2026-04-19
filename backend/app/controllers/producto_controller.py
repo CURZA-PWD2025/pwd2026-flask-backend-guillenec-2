@@ -1,5 +1,6 @@
 from flask import Response, jsonify
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.orm import joinedload
 
 from app.controllers import Controller
 from app.models import db
@@ -7,24 +8,71 @@ from app.models.producto import Producto
 
 class ProductoController(Controller):
     @staticmethod
+    def _producto_to_response(product: Producto) -> dict:
+        return {
+            "id": product.id,
+            "nombre": product.nombre,
+            "descripcion": product.descripcion,
+            "precio_costo": str(product.precio_costo),
+            "precio_venta": str(product.precio_venta),
+            "stock_actual": product.stock_actual,
+            "stock_minimo": product.stock_minimo,
+            "categoria": {
+                "id": product.categoria.id,
+                "nombre": product.categoria.nombre,
+            }
+            if product.categoria
+            else None,
+            "proveedor": {
+                "id": product.proveedor.id,
+                "nombre": product.proveedor.nombre,
+            }
+            if product.proveedor
+            else None,
+        }
+
+    @staticmethod
     def get_all() -> tuple[Response, int]:
         productos_list = (
-            db.session.execute(db.select(Producto).order_by(db.desc(Producto.id)))
+            db.session.execute(
+                db.select(Producto)
+                .options(
+                    joinedload(Producto.categoria),
+                    joinedload(Producto.proveedor),
+                )
+                .order_by(db.desc(Producto.id))
+            )
             .scalars()
             .all()
         )
+
         if len(productos_list) > 0:
-            productos_to_dict = [producto.to_dict() for producto in productos_list]
+            productos_to_dict = [
+                ProductoController._producto_to_response(product)
+                for product in productos_list
+            ]
             return jsonify(productos_to_dict), 200
         return jsonify({"message": "datos no encontrados"}), 404
 
     @staticmethod
     def show(id: int) -> tuple[Response, int]:
-        producto = db.session.get(Producto, id)
-        if producto:
-            return jsonify(producto.to_dict()), 200
+        producto = (
+            db.session.execute(
+                db.select(Producto)
+                .options(
+                    joinedload(Producto.categoria),
+                    joinedload(Producto.proveedor),
+                )
+                .filter_by(id=id)
+                )
+            .scalar_one_or_none()
+            )
 
+        if producto:
+            producto_to_dict = ProductoController._producto_to_response(producto)
+            return jsonify(producto_to_dict), 200
         return jsonify({"message": "producto no encontrado"}), 404
+ 
     
     @staticmethod
     def create(data: dict) -> tuple[Response, int]:
