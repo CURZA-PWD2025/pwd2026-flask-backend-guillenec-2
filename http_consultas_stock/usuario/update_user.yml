@@ -1,0 +1,22 @@
+info:
+  name: update_user
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: http://localhost:5001/api/v1/users
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"admin",
+        "email":"admin@update.com"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

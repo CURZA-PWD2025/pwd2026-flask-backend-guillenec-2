@@ -33,4 +33,4 @@ def update(id):
 @jwt_required()
 @rol_access(['admin'])
 def destroy(id):
-    return UserController.destroy( id)
+    return UserController.destroy(id)

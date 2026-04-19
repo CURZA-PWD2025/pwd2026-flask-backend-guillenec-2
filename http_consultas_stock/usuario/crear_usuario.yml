@@ -1,0 +1,24 @@
+info:
+  name: crear_usuario
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:5001/api/v1/users
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"admin",
+        "email":"admin@gmail.com",
+        "password":"admin123",
+        "rol_id":"1"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
