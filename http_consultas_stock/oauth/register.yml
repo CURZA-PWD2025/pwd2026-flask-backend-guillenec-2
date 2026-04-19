@@ -1,19 +1,23 @@
 info:
-  name: crear_usuario
+  name: register
   type: http
-  seq: 3
+  seq: 2
 
 http:
   method: POST
-  url: "{{BACKEND_URL}}/users"
+  url: "{{BACKEND_URL}}/auth/register"
+  params:
+    - name: ""
+      value: ""
+      type: query
   body:
     type: json
     data: |-
       {
         "nombre":"admin",
-        "email":"admin@gmail.com",
+        "email":"admin@example.com",
         "password":"admin123",
-        "rol_id":"1"
+        "rol_id":1
       }
   auth: inherit
 

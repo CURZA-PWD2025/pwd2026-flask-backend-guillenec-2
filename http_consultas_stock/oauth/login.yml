@@ -5,13 +5,13 @@ info:
 
 http:
   method: POST
-  url: http://localhost:5001/api/v1/auth/login
+  url: "{{BACKEND_URL}}/auth/login"
   body:
     type: json
     data: |-
       {
-        "email": "admin@example.com",
-        "password": "admin123"
+        "email": "operador@example.com",
+        "password": "operador123"
       }
   auth: inherit
 

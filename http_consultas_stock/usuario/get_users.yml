@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: http://localhost:5001/api/v1/users
+  url: "{{BACKEND_URL}}/users"
   body:
     type: json
     data: ""

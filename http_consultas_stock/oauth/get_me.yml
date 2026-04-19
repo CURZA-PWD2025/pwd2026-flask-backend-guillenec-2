@@ -1,11 +1,11 @@
 info:
-  name: delete_user
+  name: get_me
   type: http
-  seq: 5
+  seq: 3
 
 http:
-  method: DELETE
-  url: "{{BACKEND_URL}}/users/3"
+  method: GET
+  url: "{{BACKEND_URL}}/auth/me"
   auth:
     type: bearer
     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3NjU4NDU5OCwianRpIjoiMGYxYWQ0N2ItYmRkZi00NTA2LTgwNGMtMjhjMDVlYjQ2ZGNlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NzY1ODQ1OTgsImNzcmYiOiIxMDQ4ZjdiMC1lZTU4LTQzN2MtYTllOC03YjllY2QyYTlkYjYiLCJleHAiOjE3NzY1ODgxOTgsInJvbCI6Im9wZXJhZG9yIn0.GVi2OMFywZl1uF9ed0UClmRN4zrLHcK2RGvHby33ka8
