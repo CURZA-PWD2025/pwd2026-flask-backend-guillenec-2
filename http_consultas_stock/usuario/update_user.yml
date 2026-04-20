@@ -5,15 +5,16 @@ info:
 
 http:
   method: PUT
-  url: "{{BACKEND_URL}}/users"
+  url: "{{BACKEND_URL}}/users/3"
   body:
     type: json
     data: |-
       {
-        "nombre":"admin",
-        "email":"admin@update.com"
+        "nombre":"operador2"
       }
-  auth: inherit
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc3NjYzNDk4NCwianRpIjoiM2ZiNDMwOTgtMjk0MC00NmUwLWIxM2UtOTllZjhmNzgxZTY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NzY2MzQ5ODQsImNzcmYiOiIyNTg5OGU5Yi0xYmQ3LTQwMWEtYmI5Yi1lZTkzZGZhZTk0MTMiLCJleHAiOjE3NzY2Mzg1ODQsInJvbCI6ImFkbWluIn0.Tl9FE7g9MBvF2Hjru6JSqYRM-VM6bzN_PgUI1KAGThQ
 
 settings:
   encodeUrl: true
