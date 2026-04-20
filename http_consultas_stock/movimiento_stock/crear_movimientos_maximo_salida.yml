@@ -1,5 +1,5 @@
 info:
-  name: crear_movimientos_maximo
+  name: crear_movimientos_maximo_salida
   type: http
   seq: 5
 
@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "tipo":"entrada",
-        "cantidad":"1",
+        "tipo":"salida",
+        "cantidad":"50",
         "motivo":"Ingreso inicial de prueba",
         "producto_id":"2"
       }

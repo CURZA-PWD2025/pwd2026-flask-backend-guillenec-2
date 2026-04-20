@@ -1,7 +1,7 @@
 info:
-  name: "crear_movimientos "
+  name: crear_movimientos_minimo_salida
   type: http
-  seq: 3
+  seq: 4
 
 http:
   method: POST
@@ -10,8 +10,8 @@ http:
     type: json
     data: |-
       {
-        "tipo":"entrada",
-        "cantidad":"1",
+        "tipo":"salida",
+        "cantidad":"2",
         "motivo":"Ingreso inicial de prueba",
         "producto_id":"2"
       }

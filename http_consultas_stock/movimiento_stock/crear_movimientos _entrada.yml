@@ -1,7 +1,7 @@
 info:
-  name: crear_movimientos_minimo
+  name: crear_movimientos _entrada
   type: http
-  seq: 4
+  seq: 3
 
 http:
   method: POST
@@ -13,7 +13,7 @@ http:
         "tipo":"entrada",
         "cantidad":"10",
         "motivo":"Ingreso inicial de prueba",
-        "producto_id":"1"
+        "producto_id":"2"
       }
   auth:
     type: bearer
