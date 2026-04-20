@@ -1,19 +1,19 @@
 info:
-  name: crear_usuario
+  name: crear_movimientos_maximo
   type: http
-  seq: 3
+  seq: 5
 
 http:
   method: POST
-  url: "{{BACKEND_URL}}/users"
+  url: "{{BACKEND_URL}}/movimientos"
   body:
     type: json
     data: |-
       {
-        "nombre":"operadorw",
-        "email":"operador2@example.com",
-        "password":"operador123",
-        "rol_id":"2"
+        "tipo":"entrada",
+        "cantidad":"1",
+        "motivo":"Ingreso inicial de prueba",
+        "producto_id":"2"
       }
   auth:
     type: bearer

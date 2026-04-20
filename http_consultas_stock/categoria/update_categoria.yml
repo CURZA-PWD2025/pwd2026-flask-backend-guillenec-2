@@ -1,17 +1,17 @@
 info:
-  name: update_user
+  name: "update_categoria "
   type: http
   seq: 4
 
 http:
   method: PUT
-  url: "{{BACKEND_URL}}/users/3"
+  url: "{{BACKEND_URL}}/categorias/3"
   body:
     type: json
     data: |-
       {
-        "email":"operador2@example.com",
-        "nombre":"operador2"
+        "nombre":"bebidas",
+        "descripcion":"Bebidas con y sin alcohol"
       }
   auth:
     type: bearer

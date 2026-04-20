@@ -1,17 +1,19 @@
 info:
-  name: update_user
+  name: update_proveedores
   type: http
   seq: 4
 
 http:
   method: PUT
-  url: "{{BACKEND_URL}}/users/3"
+  url: "{{BACKEND_URL}}/proveedores/2"
   body:
     type: json
     data: |-
       {
-        "email":"operador2@example.com",
-        "nombre":"operador2"
+        "nombre":"distribuidora roca 123",
+        "contacto":"direccion 2",
+        "telefono":"2944396887",
+        "email":"rocaqgmail.com"
       }
   auth:
     type: bearer

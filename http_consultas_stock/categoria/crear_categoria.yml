@@ -1,17 +1,17 @@
 info:
-  name: update_user
+  name: crear_categoria
   type: http
-  seq: 4
+  seq: 3
 
 http:
-  method: PUT
-  url: "{{BACKEND_URL}}/users/3"
+  method: POST
+  url: "{{BACKEND_URL}}/categorias/"
   body:
     type: json
     data: |-
       {
-        "email":"operador2@example.com",
-        "nombre":"operador2"
+        "nombre":"bebidas sin alchooos",
+        "descripcion":"Bebidas sin alcohol"
       }
   auth:
     type: bearer
