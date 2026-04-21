@@ -1,0 +1,26 @@
+info:
+  name: crear_movimientos_maximo_salida
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{BACKEND_URL}}/movimientos"
+  body:
+    type: json
+    data: |-
+      {
+        "tipo":"salida",
+        "cantidad":"50",
+        "motivo":"Ingreso inicial de prueba",
+        "producto_id":"2"
+      }
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

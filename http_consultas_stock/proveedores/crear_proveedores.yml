@@ -1,0 +1,26 @@
+info:
+  name: crear_proveedores
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{BACKEND_URL}}/proveedores"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"distribuidora roca",
+        "contacto":"direccion de pruebas",
+        "telefono":"2944396887",
+        "email":"rocaqgmail.com"
+      }
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

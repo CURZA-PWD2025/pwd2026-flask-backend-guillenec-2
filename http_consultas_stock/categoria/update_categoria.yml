@@ -1,0 +1,24 @@
+info:
+  name: "update_categoria "
+  type: http
+  seq: 4
+
+http:
+  method: PUT
+  url: "{{BACKEND_URL}}/categorias/3"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"bebidas",
+        "descripcion":"Bebidas con y sin alcohol"
+      }
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

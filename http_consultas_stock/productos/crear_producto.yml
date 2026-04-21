@@ -1,0 +1,30 @@
+info:
+  name: crear_producto
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{BACKEND_URL}}/productos"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"cerveza quilmes",
+        "descripcion":"cerveza quilmes rubia pilsen",
+        "precio_costo":"1500",
+        "precio_venta":"3000",
+        "stock_actual":"20",
+        "stock_minimo":"1",
+        "categoria_id":"3",
+        "proveedor_id":"1"
+      }
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

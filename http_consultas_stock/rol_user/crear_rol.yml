@@ -1,0 +1,21 @@
+info:
+  name: crear_rol
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{BACKEND_URL}}/roles/"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"rol_pruebas"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

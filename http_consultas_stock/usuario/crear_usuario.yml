@@ -1,0 +1,26 @@
+info:
+  name: crear_usuario
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{BACKEND_URL}}/users"
+  body:
+    type: json
+    data: |-
+      {
+        "nombre":"operadorw",
+        "email":"operador2@example.com",
+        "password":"operador123",
+        "rol_id":"2"
+      }
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

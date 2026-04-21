@@ -1,5 +1,6 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/b0vxNtZy)
 # Trabajo Práctico N° 1 — Sistema de Gestión de Stock
+
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/b0vxNtZy)
 
 **Materia:** Programación Web Dinámica  
 **Modalidad:** Individual  
@@ -72,7 +73,7 @@ El sistema tiene cuatro modelos que heredan de su `BaseModel` (con `id`, `create
 
 ### Relaciones entre modelos
 
-```
+```bash
 Categoria ──< Producto >── Proveedor
                │
                └──< MovimientoStock >── User
@@ -144,7 +145,7 @@ El proyecto debe tener al menos **cuatro Blueprints** además de `auth`.
 
 ## Estructura de carpetas esperada
 
-```
+```bash
 app/
 ├── __init__.py              # create_app, registrar blueprints y JWT
 ├── config.py                # clase Config con variables de entorno
@@ -195,7 +196,7 @@ El `docker-compose.yml` debe definir **tres servicios**:
 
 ### Variables de entorno (`.env`)
 
-```
+```bash
 FLASK_APP=run.py
 FLASK_ENV=development
 FLASK_DEBUG=1
@@ -298,7 +299,6 @@ Para ejecutarlo dentro del contenedor:
 docker-compose exec backend python seed.py
 ```
 
-
 ---
 
 ## Respuestas JSON esperadas
@@ -306,6 +306,7 @@ docker-compose exec backend python seed.py
 Todas las respuestas deben ser JSON.
 
 **Listado de productos (`GET /productos/`):**
+
 ```json
 [
   {
@@ -321,11 +322,13 @@ Todas las respuestas deben ser JSON.
 ```
 
 **Error de negocio:**
+
 ```json
 { "error": "Stock insuficiente para registrar la salida" }
 ```
 
 **Error de autorización:**
+
 ```json
 { "msg": "Acceso denegado: se requiere rol admin" }
 ```
@@ -359,14 +362,13 @@ def rol_access(*roles):
     return decorator
 ```
 
-
 ## Orden sugerido de implementación
 
 Si no saben por dónde arrancar, este orden les va a ahorrar tiempo:
 
 1. Crear `BaseModel` y luego los modelos: `Rol` → `User` → `Categoria` → `Proveedor` → `Producto` → `MovimientoStock`.
 Pueden crear los modelos como venimos haciendo, sin el `BaseModel`, esta parte la explico el viernes 10/04/2026.
-2. Correr `flask db init`, `flask db migrate` y `flask db upgrade`. o correr el `firt_step.sh` Verificar las tablas en pgadmin. 
+2. Correr `flask db init`, `flask db migrate` y `flask db upgrade`. o correr el `firt_step.sh` Verificar las tablas en pgadmin.
 3. Implementar el módulo `auth` completo. Probar register y login.
 4. Implementar el Blueprint de `categorias` (el más simple). Probar GET, POST, PUT, DELETE con el token.
 5. Implementar `proveedores` (misma estructura que categorías).
@@ -390,5 +392,6 @@ No hay nota numérica — este TP es una ejercitación. Se va a revisar que 👍
 > Si el sistema no levanta con Docker no se puede revisar el resto. Prueben el flujo completo antes de hacer el push final.
 
 ### Flask SQLAlchemy Cheatsheet 📎
+
 En la raiz de este repo encontraran un archivo `SQLAlchemy_Cheatsheet.pdf` con toda la información de como se pueden crear las tablas, relaciones y restricciones.
 usenlo como referencia para el trabajo que estamos realizando 👍

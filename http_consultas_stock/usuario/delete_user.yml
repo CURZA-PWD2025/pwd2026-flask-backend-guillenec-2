@@ -1,0 +1,17 @@
+info:
+  name: delete_user
+  type: http
+  seq: 5
+
+http:
+  method: DELETE
+  url: "{{BACKEND_URL}}/users/3"
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

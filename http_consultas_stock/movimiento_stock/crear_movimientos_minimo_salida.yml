@@ -1,0 +1,26 @@
+info:
+  name: crear_movimientos_minimo_salida
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{BACKEND_URL}}/movimientos"
+  body:
+    type: json
+    data: |-
+      {
+        "tipo":"salida",
+        "cantidad":"2",
+        "motivo":"Ingreso inicial de prueba",
+        "producto_id":"2"
+      }
+  auth:
+    type: bearer
+    token: "{{BEAR_TOKEN}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
